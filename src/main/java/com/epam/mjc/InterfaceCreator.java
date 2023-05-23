@@ -14,19 +14,22 @@ public class InterfaceCreator {
 
     public Predicate<List<String>> isValuesStartWithUpperCase() {
         return x-> {
-            boolean result = false;
             for (String s : x) {
-                result = Character.isUpperCase(s.charAt(0));
+                if (!Character.isUpperCase(s.charAt(0))){
+                    return false;
+                }
             }
-            return result;
+            return true;
         };
     }
 
     public Consumer<List<Integer>> addEvenValuesAtTheEnd() {
         return x -> {
-            for (Integer i : x) {
-                if (i % 2 == 0){
-                    x.add(i);
+            int size = x.size();
+            for (int i = 0; i < size; i++) {
+                int value = x.get(i);
+                if (value % 2 == 0) {
+                    x.add(value);
                 }
             }
             System.out.println(x);
